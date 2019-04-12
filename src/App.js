@@ -19,6 +19,12 @@ class App extends Component {
      this.setState({ newTodoDescription: e.target.value })
    }
 
+   deleteToDo (to_delete) {
+     let filtered_array = this.state.todos.filter((todo) =>
+       (todo.description === to_delete.description ));
+     this.setState({todos: filtered_array})
+   }
+
   handleSubmit(e) {
     e.preventDefault();
     if (!this.state.newTodoDescription) { return }
@@ -40,8 +46,13 @@ class App extends Component {
 
       <ul>
       { this.state.todos.map( (todo, index) =>
-           <ToDo key={ index } description={ todo.description } isCompleted={ todo.isCompleted } toggleComplete={ () => this.toggleComplete(index) } />
-       )}
+           <ToDo key={ index }
+                 description={ todo.description }
+                 isCompleted={ todo.isCompleted }
+                 toggleComplete={ () => this.toggleComplete(index) }
+                 deleteToDo={ (todo) => this.deleteToDo (todo)}
+           />
+    ) }
        </ul>
          <form onSubmit={ (e) => this.handleSubmit(e) }>
           <input type="text" value={ this.state.newTodoDescription } onChange={ (e) => this.handleChange(e) } />
