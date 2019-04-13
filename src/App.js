@@ -47,6 +47,7 @@ class App extends Component {
       <ul>
       { this.state.todos.map( (todo, index) =>
            <ToDo key={ index }
+                 todo={todo}
                  description={ todo.description }
                  isCompleted={ todo.isCompleted }
                  toggleComplete={ () => this.toggleComplete(index) }
