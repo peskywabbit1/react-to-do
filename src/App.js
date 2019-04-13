@@ -7,9 +7,9 @@ class App extends Component {
     super(props);
     this.state = {
        todos: [
-         { description: 'Walk the cat', isCompleted: true },
-         { description: 'Throw the dishes away', isCompleted: false },
-         { description: 'Buy new dishes', isCompleted: false }
+         { id: 1, description: 'Walk the cat', isCompleted: true },
+         { id: 2, description: 'Throw the dishes away', isCompleted: false },
+         { id: 3, description: 'Buy new dishes', isCompleted: false }
        ],
       newTodoDescription: ''
      };
@@ -21,13 +21,13 @@ class App extends Component {
 
    deleteToDo (to_delete) {
      let filtered_array = this.state.todos.filter((todo) =>
-       (todo.description === to_delete.description ));
-     this.setState({todos: filtered_array})
+       (todo.id === to_delete.id ));
+     this.setState({todos: filtered_array});
    }
 
   handleSubmit(e) {
     e.preventDefault();
-    if (!this.state.newTodoDescription) { return }
+    if (!this.state.newTodoDescription) { return; }
     const newTodo = { description: this.state.newTodoDescription, isCompleted: false };
     this.setState({ todos: [...this.state.todos, newTodo], newTodoDescription: '' });
   }
